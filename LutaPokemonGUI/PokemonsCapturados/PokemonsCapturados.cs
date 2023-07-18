@@ -24,8 +24,8 @@ namespace LutaPokemonGUI.PokemonsCapturados
             foreach (var pokemon in LutaPokemonGUI.AreaDeTrab.Trainer.pokesJogador)
             {
                 ListViewItem pokelista = new ListViewItem(id.ToString());
-                pokelista.SubItems.Add(pokemon.Nome);
-                pokelista.SubItems.Add(pokemon.Elemento);
+                pokelista.SubItems.Add(pokemon.nome);
+                pokelista.SubItems.Add(pokemon.elemento);
                 pokelista.SubItems.Add(pokemon.nivel.ToString());
 
                 lvPokesCap.Items.Add(pokelista);

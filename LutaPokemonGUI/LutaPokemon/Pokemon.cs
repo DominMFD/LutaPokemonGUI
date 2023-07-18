@@ -9,12 +9,12 @@ namespace LutaPokemon
 
     public class Pokemon
     {
-        public string Nome { get; set; }
-        public string Elemento { get; set; }
-        public int Forca { get; set; }
-        public double Vida { get; set; }
-        public int Def { get; set; }
-        public Golpe[] Golpes { get; set; }
+        public string nome { get; set; }
+        public string elemento { get; set; }
+        public int forca { get; set; }
+        public double vida { get; set; }
+        public int def { get; set; }
+        public Golpe[] golpes { get; set; }
         public Image Image { get; set; }
         public static Random r = new Random();
 
@@ -24,13 +24,13 @@ namespace LutaPokemon
         }
         public Pokemon(string nome, string elemento, int forca, double vida, int def, Golpe[] golpes, Image image)
         {
-            this.Golpes = golpes;
-            this.Nome = nome;
-            this.Elemento = elemento;
-            this.Forca = forca;
-            this.Vida = vida;
-            this.Def = def;
-            this.Golpes = golpes;
+            this.golpes = golpes;
+            this.nome = nome;
+            this.elemento = elemento;
+            this.forca = forca;
+            this.vida = vida;
+            this.def = def;
+            this.golpes = golpes;
             this.Image = image;
         }
     }

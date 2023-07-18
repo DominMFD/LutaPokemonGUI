@@ -36,20 +36,20 @@ namespace LutaPokemonGUI.Combate
                 BtnColors();
                 pbPokeEscolhido.Image = pokeEscolhido.Image;
                 pbPokeSelvagem.Image = pokeSelvagem.Image;
-                label1.Text = pokeEscolhido.Nome;
-                label2.Text = pokeSelvagem.Nome;
-                label3.Text = pokeEscolhido.Vida.ToString();
-                label4.Text = pokeSelvagem.Vida.ToString();
-                btAttack1.Text = pokeEscolhido.Golpes[0].Nome;
-                btAttack2.Text = pokeEscolhido.Golpes[1].Nome;
-                btAttack3.Text = pokeEscolhido.Golpes[2].Nome;
-                btAttack4.Text = pokeEscolhido.Golpes[3].Nome;
-                this.vidapokejogador = pokeEscolhido.Vida;
-                this.vidapokeselvagem = pokeSelvagem.Vida;
+                label1.Text = pokeEscolhido.nome;
+                label2.Text = pokeSelvagem.nome;
+                label3.Text = pokeEscolhido.vida.ToString();
+                label4.Text = pokeSelvagem.vida.ToString();
+                btAttack1.Text = pokeEscolhido.golpes[0].Nome;
+                btAttack2.Text = pokeEscolhido.golpes[1].Nome;
+                btAttack3.Text = pokeEscolhido.golpes[2].Nome;
+                btAttack4.Text = pokeEscolhido.golpes[3].Nome;
+                this.vidapokejogador = pokeEscolhido.vida;
+                this.vidapokeselvagem = pokeSelvagem.vida;
                 lblDanoSelvagem.Text = "";
                 lbDanoJogador.Text = "";
-                label5.Text = pokeEscolhido.Vida.ToString();
-                label6.Text = pokeSelvagem.Vida.ToString();
+                label5.Text = pokeEscolhido.vida.ToString();
+                label6.Text = pokeSelvagem.vida.ToString();
                 LutaPokemonGUI.AreaDeTrab.selecionar.Close();
             }
             catch (Exception ex)
@@ -70,22 +70,22 @@ namespace LutaPokemonGUI.Combate
 
         private void btAttack1_Click(object sender, EventArgs e)
         {
-
+            
             Random r = new Random();
-            int random = r.Next(0, pokeSelvagem.Golpes.Length);
+            int random = r.Next(0, pokeSelvagem.golpes.Length);
             int xp = r.Next(20, 45);
-            double PlayerDamage = pokeEscolhido.Forca + pokeEscolhido.Golpes[0].Poder + (pokeEscolhido.Forca * 0.5);
-            double WildDamage = pokeSelvagem.Forca + pokeEscolhido.Golpes[random].Poder + (pokeEscolhido.Forca * 0.5);
+            double PlayerDamage = pokeEscolhido.forca + pokeEscolhido.golpes[0].Poder + (pokeEscolhido.forca * 0.5);
+            double WildDamage = pokeSelvagem.forca + pokeEscolhido.golpes[random].Poder + (pokeEscolhido.forca * 0.5);
 
-            lbDanoJogador.Text = $"{pokeEscolhido.Nome} ataca {pokeSelvagem.Nome} usando {pokeEscolhido.Golpes[0].Nome} e causando {PlayerDamage - pokeSelvagem.Def} de dano.";
-            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.Def);
+            lbDanoJogador.Text = $"{pokeEscolhido.nome} ataca {pokeSelvagem.nome} usando {pokeEscolhido.golpes[0].Nome} e causando {PlayerDamage - pokeSelvagem.def} de dano.";
+            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.def);
             if (vidapokeselvagem > 0)
             {
                 LifeColorsEnemy();
                 label4.Text = vidapokeselvagem.ToString();
 
-                lblDanoSelvagem.Text = $"{pokeSelvagem.Nome} ataca {pokeEscolhido.Nome} usando {pokeSelvagem.Golpes[random].Nome} e causando {WildDamage - pokeEscolhido.Def} de dano.";
-                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.Def);
+                lblDanoSelvagem.Text = $"{pokeSelvagem.nome} ataca {pokeEscolhido.nome} usando {pokeSelvagem.golpes[random].Nome} e causando {WildDamage - pokeEscolhido.def} de dano.";
+                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.def);
                 if (vidapokejogador > 0)
                 {
                     LifeColorsAlly();
@@ -96,18 +96,18 @@ namespace LutaPokemonGUI.Combate
             if (vidapokeselvagem <= 0)
             {
                 label4.Text = "0";
-                MessageBox.Show($"{pokeEscolhido.Nome} ganhou a batalha!!!\n{pokeEscolhido.Nome} recebeu {xp} de experiência");
-                pokeEscolhido.Exp = pokeEscolhido.Exp + xp;
+                MessageBox.Show($"{pokeEscolhido.nome} ganhou a batalha!!!\n{pokeEscolhido.nome} recebeu {xp} de experiência");
+                pokeEscolhido.exp = pokeEscolhido.exp + xp;
                 pokeEscolhido.SubirNivel();
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatVenc++;
+                LutaPokemonGUI.AreaDeTrab.Trainer.batVenc++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
             if (vidapokejogador <= 0)
             {
                 label3.Text = "0";
-                MessageBox.Show($"{pokeSelvagem.Nome} ganhou a batalha");
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatPerd++;
+                MessageBox.Show($"{pokeSelvagem.nome} ganhou a batalha");
+                LutaPokemonGUI.AreaDeTrab.Trainer.batPerd++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
 
@@ -117,20 +117,20 @@ namespace LutaPokemonGUI.Combate
         private void btAttack2_Click(object sender, EventArgs e)
         {
             Random r = new Random();
-            int random = r.Next(0, pokeSelvagem.Golpes.Length);
+            int random = r.Next(0, pokeSelvagem.golpes.Length);
             int xp = r.Next(20, 45);
-            double PlayerDamage = pokeEscolhido.Forca + pokeEscolhido.Golpes[1].Poder + (pokeEscolhido.Forca * 0.5);
-            double WildDamage = pokeSelvagem.Forca + pokeEscolhido.Golpes[random].Poder + (pokeEscolhido.Forca * 0.5);
+            double PlayerDamage = pokeEscolhido.forca + pokeEscolhido.golpes[1].Poder + (pokeEscolhido.forca * 0.5);
+            double WildDamage = pokeSelvagem.forca + pokeEscolhido.golpes[random].Poder + (pokeEscolhido.forca * 0.5);
 
-            lbDanoJogador.Text = $"{pokeEscolhido.Nome} ataca {pokeSelvagem.Nome} usando {pokeEscolhido.Golpes[1].Nome} e causando {PlayerDamage - pokeSelvagem.Def} de dano.";
-            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.Def);
+            lbDanoJogador.Text = $"{pokeEscolhido.nome} ataca {pokeSelvagem.nome} usando {pokeEscolhido.golpes[1].Nome} e causando {PlayerDamage - pokeSelvagem.def} de dano.";
+            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.def);
             if (vidapokeselvagem > 0)
             {
                 LifeColorsEnemy();
                 label4.Text = vidapokeselvagem.ToString();
 
-                lblDanoSelvagem.Text = $"{pokeSelvagem.Nome} ataca {pokeEscolhido.Nome} usando {pokeSelvagem.Golpes[random].Nome} e causando {WildDamage - pokeEscolhido.Def} de dano.";
-                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.Def);
+                lblDanoSelvagem.Text = $"{pokeSelvagem.nome} ataca {pokeEscolhido.nome} usando {pokeSelvagem.golpes[random].Nome} e causando {WildDamage - pokeEscolhido.def} de dano.";
+                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.def);
                 if (vidapokejogador > 0)
                 {
                     LifeColorsAlly();
@@ -141,18 +141,18 @@ namespace LutaPokemonGUI.Combate
             if (vidapokeselvagem <= 0)
             {
                 label4.Text = "0";
-                MessageBox.Show($"{pokeEscolhido.Nome} ganhou a batalha!!!\n{pokeEscolhido.Nome} recebeu {xp} de experiência");
-                pokeEscolhido.Exp = pokeEscolhido.Exp + xp;
+                MessageBox.Show($"{pokeEscolhido.nome} ganhou a batalha!!!\n{pokeEscolhido.nome} recebeu {xp} de experiência");
+                pokeEscolhido.exp = pokeEscolhido.exp + xp;
                 pokeEscolhido.SubirNivel();
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatVenc++;
+                LutaPokemonGUI.AreaDeTrab.Trainer.batVenc++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
             if (vidapokejogador <= 0)
             {
                 label3.Text = "0";
-                MessageBox.Show($"{pokeSelvagem.Nome} ganhou a batalha");
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatPerd++;
+                MessageBox.Show($"{pokeSelvagem.nome} ganhou a batalha");
+                LutaPokemonGUI.AreaDeTrab.Trainer.batPerd++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
@@ -161,20 +161,20 @@ namespace LutaPokemonGUI.Combate
         private void btAttack3_Click(object sender, EventArgs e)
         {
             Random r = new Random();
-            int random = r.Next(0, pokeSelvagem.Golpes.Length);
+            int random = r.Next(0, pokeSelvagem.golpes.Length);
             int xp = r.Next(20, 45);
-            double PlayerDamage = pokeEscolhido.Forca + pokeEscolhido.Golpes[2].Poder + (pokeEscolhido.Forca * 0.5);
-            double WildDamage = pokeSelvagem.Forca + pokeEscolhido.Golpes[random].Poder + (pokeEscolhido.Forca * 0.5);
+            double PlayerDamage = pokeEscolhido.forca + pokeEscolhido.golpes[2].Poder + (pokeEscolhido.forca * 0.5);
+            double WildDamage = pokeSelvagem.forca + pokeEscolhido.golpes[random].Poder + (pokeEscolhido.forca * 0.5);
 
-            lbDanoJogador.Text = $"{pokeEscolhido.Nome} ataca {pokeSelvagem.Nome} usando {pokeEscolhido.Golpes[2].Nome} e causando {PlayerDamage - pokeSelvagem.Def} de dano.";
-            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.Def);
+            lbDanoJogador.Text = $"{pokeEscolhido.nome} ataca {pokeSelvagem.nome} usando {pokeEscolhido.golpes[2].Nome} e causando {PlayerDamage - pokeSelvagem.def} de dano.";
+            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.def);
             if (vidapokeselvagem > 0)
             {
                 LifeColorsEnemy();
                 label4.Text = vidapokeselvagem.ToString();
 
-                lblDanoSelvagem.Text = $"{pokeSelvagem.Nome} ataca {pokeEscolhido.Nome} usando {pokeSelvagem.Golpes[random].Nome} e causando {WildDamage - pokeEscolhido.Def} de dano.";
-                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.Def);
+                lblDanoSelvagem.Text = $"{pokeSelvagem.nome} ataca {pokeEscolhido.nome} usando {pokeSelvagem.golpes[random].Nome} e causando {WildDamage - pokeEscolhido.def} de dano.";
+                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.def);
                 if (vidapokejogador > 0)
                 {
                     LifeColorsAlly();
@@ -185,18 +185,18 @@ namespace LutaPokemonGUI.Combate
             if (vidapokeselvagem <= 0)
             {
                 label4.Text = "0";
-                MessageBox.Show($"{pokeEscolhido.Nome} ganhou a batalha!!!\n{pokeEscolhido.Nome} recebeu {xp} de experiência");
-                pokeEscolhido.Exp = pokeEscolhido.Exp + xp;
+                MessageBox.Show($"{pokeEscolhido.nome} ganhou a batalha!!!\n{pokeEscolhido.nome} recebeu {xp} de experiência");
+                pokeEscolhido.exp = pokeEscolhido.exp + xp;
                 pokeEscolhido.SubirNivel();
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatVenc++;
+                LutaPokemonGUI.AreaDeTrab.Trainer.batVenc++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
             if (vidapokejogador <= 0)
             {
                 label3.Text = "0";
-                MessageBox.Show($"{pokeSelvagem.Nome} ganhou a batalha");
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatPerd++;
+                MessageBox.Show($"{pokeSelvagem.nome} ganhou a batalha");
+                LutaPokemonGUI.AreaDeTrab.Trainer.batPerd++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
@@ -205,20 +205,20 @@ namespace LutaPokemonGUI.Combate
         private void btAttack4_Click(object sender, EventArgs e)
         {
             Random r = new Random();
-            int random = r.Next(0, pokeSelvagem.Golpes.Length);
+            int random = r.Next(0, pokeSelvagem.golpes.Length);
             int xp = r.Next(20, 45);
-            double PlayerDamage = pokeEscolhido.Forca + pokeEscolhido.Golpes[3].Poder + (pokeEscolhido.Forca * 0.5);
-            double WildDamage = pokeSelvagem.Forca + pokeEscolhido.Golpes[random].Poder + (pokeEscolhido.Forca * 0.5);
+            double PlayerDamage = pokeEscolhido.forca + pokeEscolhido.golpes[3].Poder + (pokeEscolhido.forca * 0.5);
+            double WildDamage = pokeSelvagem.forca + pokeEscolhido.golpes[random].Poder + (pokeEscolhido.forca * 0.5);
 
-            lbDanoJogador.Text = $"{pokeEscolhido.Nome} ataca {pokeSelvagem.Nome} usando {pokeEscolhido.Golpes[3].Nome} e causando {PlayerDamage - pokeSelvagem.Def} de dano.";
-            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.Def);
+            lbDanoJogador.Text = $"{pokeEscolhido.nome} ataca {pokeSelvagem.nome} usando {pokeEscolhido.golpes[3].Nome} e causando {PlayerDamage - pokeSelvagem.def} de dano.";
+            vidapokeselvagem = vidapokeselvagem - (PlayerDamage - pokeSelvagem.def);
             if (vidapokeselvagem > 0)
             {
                 LifeColorsEnemy();
                 label4.Text = vidapokeselvagem.ToString();
 
-                lblDanoSelvagem.Text = $"{pokeSelvagem.Nome} ataca {pokeEscolhido.Nome} usando {pokeSelvagem.Golpes[random].Nome} e causando {WildDamage - pokeEscolhido.Def} de dano.";
-                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.Def);
+                lblDanoSelvagem.Text = $"{pokeSelvagem.nome} ataca {pokeEscolhido.nome} usando {pokeSelvagem.golpes[random].Nome} e causando {WildDamage - pokeEscolhido.def} de dano.";
+                vidapokejogador = vidapokejogador - (WildDamage - pokeEscolhido.def);
                 if (vidapokejogador > 0)
                 {
                     LifeColorsAlly();
@@ -229,18 +229,18 @@ namespace LutaPokemonGUI.Combate
             if (vidapokeselvagem <= 0)
             {
                 label4.Text = "0";
-                MessageBox.Show($"{pokeEscolhido.Nome} ganhou a batalha!!!\n{pokeEscolhido.Nome} recebeu {xp} de experiência");
-                pokeEscolhido.Exp = pokeEscolhido.Exp + xp;
+                MessageBox.Show($"{pokeEscolhido.nome} ganhou a batalha!!!\n{pokeEscolhido.nome} recebeu {xp} de experiência");
+                pokeEscolhido.exp = pokeEscolhido.exp + xp;
                 pokeEscolhido.SubirNivel();
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatVenc++;
+                LutaPokemonGUI.AreaDeTrab.Trainer.batVenc++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
             if (vidapokejogador <= 0)
             {
                 label3.Text = "0";
-                MessageBox.Show($"{pokeSelvagem.Nome} ganhou a batalha");
-                LutaPokemonGUI.AreaDeTrab.Trainer.BatPerd++;
+                MessageBox.Show($"{pokeSelvagem.nome} ganhou a batalha");
+                LutaPokemonGUI.AreaDeTrab.Trainer.batPerd++;
                 LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                 AreaDeTrab.SoundMenu.Play();
             }
@@ -271,84 +271,84 @@ namespace LutaPokemonGUI.Combate
 
         private void BtnColors()
         {
-            if (pokeEscolhido.Elemento == "Planta")
+            if (pokeEscolhido.elemento == "Planta")
             {
                 btAttack1.BackColor = Color.DarkGreen;
                 btAttack2.BackColor = Color.DarkGreen;
                 btAttack3.BackColor = Color.DarkGreen;
                 btAttack4.BackColor = Color.DarkGreen;
             }
-            else if (pokeEscolhido.Elemento == "Fogo")
+            else if (pokeEscolhido.elemento == "Fogo")
             {
                 btAttack1.BackColor = Color.Orange;
                 btAttack2.BackColor = Color.Orange;
                 btAttack3.BackColor = Color.Orange;
                 btAttack4.BackColor = Color.Orange;
             }
-            else if (pokeEscolhido.Elemento == "Agua")
+            else if (pokeEscolhido.elemento == "Agua")
             {
                 btAttack1.BackColor = Color.Aqua;
                 btAttack2.BackColor = Color.Aqua;
                 btAttack3.BackColor = Color.Aqua;
                 btAttack4.BackColor = Color.Aqua;
             }
-            else if (pokeEscolhido.Elemento == "Eletrico")
+            else if (pokeEscolhido.elemento == "Eletrico")
             {
                 btAttack1.BackColor = Color.Yellow;
                 btAttack2.BackColor = Color.Yellow;
                 btAttack3.BackColor = Color.Yellow;
                 btAttack4.BackColor = Color.Yellow;
             }
-            else if (pokeEscolhido.Elemento == "Voador")
+            else if (pokeEscolhido.elemento == "Voador")
             {
                 btAttack1.BackColor = Color.Wheat;
                 btAttack2.BackColor = Color.Wheat;
                 btAttack3.BackColor = Color.Wheat;
                 btAttack4.BackColor = Color.Wheat;
             }
-            else if (pokeEscolhido.Elemento == "Normal")
+            else if (pokeEscolhido.elemento == "Normal")
             {
                 btAttack1.BackColor = Color.Coral;
                 btAttack2.BackColor = Color.Coral;
                 btAttack3.BackColor = Color.Coral;
                 btAttack4.BackColor = Color.Coral;
             }
-            else if (pokeEscolhido.Elemento == "Veneno")
+            else if (pokeEscolhido.elemento == "Veneno")
             {
                 btAttack1.BackColor = Color.Indigo;
                 btAttack2.BackColor = Color.Indigo;
                 btAttack3.BackColor = Color.Indigo;
                 btAttack4.BackColor = Color.Indigo;
             }
-            else if (pokeEscolhido.Elemento == "Inseto")
+            else if (pokeEscolhido.elemento == "Inseto")
             {
                 btAttack1.BackColor = Color.YellowGreen;
                 btAttack2.BackColor = Color.YellowGreen;
                 btAttack3.BackColor = Color.YellowGreen;
                 btAttack4.BackColor = Color.YellowGreen;
             }
-            else if (pokeEscolhido.Elemento == "Terra")
+            else if (pokeEscolhido.elemento == "Terra")
             {
                 btAttack1.BackColor = Color.Tan;
                 btAttack2.BackColor = Color.Tan;
                 btAttack3.BackColor = Color.Tan;
                 btAttack4.BackColor = Color.Tan;
             }
-            else if (pokeEscolhido.Elemento == "Lutador")
+            else if (pokeEscolhido.elemento == "Lutador")
             {
                 btAttack1.BackColor = Color.DarkRed;
                 btAttack2.BackColor = Color.DarkRed;
                 btAttack3.BackColor = Color.DarkRed;
                 btAttack4.BackColor = Color.DarkRed;
             }
-            else if (pokeEscolhido.Elemento == "Psiquico")
+            else if (pokeEscolhido.elemento == "Psiquico")
             {
                 btAttack1.BackColor = Color.Violet;
                 btAttack2.BackColor = Color.Violet;
                 btAttack3.BackColor = Color.Violet;
                 btAttack4.BackColor = Color.Violet;
             }
-            else if (pokeEscolhido.Elemento == "Pedra")
+            else if (pokeEscolhido.elemento == "Pedra")
             {
                 btAttack1.BackColor = Color.Gray;
                 btAttack2.BackColor = Color.Gray;
@@ -359,11 +359,11 @@ namespace LutaPokemonGUI.Combate
 
         private void LifeColorsAlly()
         {
-            if (vidapokejogador == pokeEscolhido.Vida)
+            if (vidapokejogador == pokeEscolhido.vida)
             {
                 label3.ForeColor = Color.LimeGreen;
             }
-            if (vidapokejogador > 140 && vidapokejogador < pokeEscolhido.Vida)
+            if (vidapokejogador > 140 && vidapokejogador < pokeEscolhido.vida)
             {
                 label3.ForeColor = Color.PaleGreen;
             }
@@ -383,11 +383,11 @@ namespace LutaPokemonGUI.Combate
 
         private void LifeColorsEnemy()
         {
-            if (vidapokeselvagem == pokeSelvagem.Vida)
+            if (vidapokeselvagem == pokeSelvagem.vida)
             {
                 label4.ForeColor = Color.LimeGreen;
             }
-            if (vidapokeselvagem > 140 && vidapokejogador < pokeSelvagem.Vida)
+            if (vidapokeselvagem > 140 && vidapokejogador < pokeSelvagem.vida)
             {
                 label4.ForeColor = Color.PaleGreen;
             }

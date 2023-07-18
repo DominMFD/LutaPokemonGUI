@@ -23,10 +23,10 @@ namespace LutaPokemonGUI
         {
             SoundButton.Play();
             InfoTreinador.JanelaInfoTreinador janela = new InfoTreinador.JanelaInfoTreinador();
-            janela.lbTrainerName.Text = Trainer.Nome;
-            janela.lbBatVenc.Text = Trainer.BatVenc.ToString();
-            janela.lbBatPerd.Text = Trainer.BatPerd.ToString();
-            janela.lbPokeCap.Text = Trainer.PokeCap.ToString();
+            janela.lbTrainerName.Text = Trainer.nome;
+            janela.lbBatVenc.Text = Trainer.batVenc.ToString();
+            janela.lbBatPerd.Text = Trainer.batPerd.ToString();
+            janela.lbPokeCap.Text = Trainer.pokeCap.ToString();
 
             janela.Show();
             await Task.Delay(1000);

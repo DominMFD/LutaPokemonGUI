@@ -13,10 +13,10 @@ using System.Threading.Tasks;
 {
     public class Jogador
     {
-        public string Nome { set; get; }
-        public int BatVenc { set; get; }
-        public int BatPerd { set; get; }
-        public int PokeCap { set; get; } 
+        public string nome { set; get; }
+        public int batVenc { set; get; }
+        public int batPerd { set; get; }
+        public int pokeCap { set; get; } 
 
         public Jogador() 
         {
@@ -24,7 +24,7 @@ using System.Threading.Tasks;
         }
         public Jogador(string nome)
         {
-            this.Nome = nome;
+            this.nome = nome;
   
         }
 
@@ -34,7 +34,7 @@ using System.Threading.Tasks;
         {
             PokemonJogador pokemon = new PokemonJogador("Bulbasaur", "Planta", 92, 200, 92, Golpe.setPlanta, Image.FromFile("Images/Bulbasaur.png"));
             pokesJogador.Add(pokemon);
-            PokeCap++;
+            pokeCap++;
         }
 
 
@@ -45,7 +45,7 @@ using System.Threading.Tasks;
         {
 
             string nomePoke = SelecionarPokemon.Instance.lvSelecionarPoke.SelectedItems[0].SubItems[1].Text;
-            PokemonJogador poke = pokesJogador.Find(x => x.Nome == nomePoke);
+            PokemonJogador poke = pokesJogador.Find(x => x.nome == nomePoke);
            
 
             return poke;
@@ -59,7 +59,7 @@ using System.Threading.Tasks;
                 PokemonJogador poke = new PokemonJogador();
                 List<PokemonJogador> pokeencontrado = pokesJogador.FindAll(delegate (PokemonJogador p)
                 {
-                    return p.Nome.Equals(pokemonSelvagem.Nome);
+                    return p.nome.Equals(pokemonSelvagem.nome);
                 });
 
                 int catchRate = r.Next(0, 100);
@@ -82,9 +82,9 @@ using System.Threading.Tasks;
                     {
                         sound = new SoundPlayer("Sounds/PokemonCapturou.wav");
                         sound.Play();
-                        poke = new PokemonJogador(pokemonSelvagem.Nome, pokemonSelvagem.Elemento, pokemonSelvagem.Forca, pokemonSelvagem.Vida, pokemonSelvagem.Def, pokemonSelvagem.Golpes, Image.FromFile($"Images/{pokemonSelvagem.Nome}.png"));
+                        poke = new PokemonJogador(pokemonSelvagem.nome, pokemonSelvagem.elemento, pokemonSelvagem.forca, pokemonSelvagem.vida, pokemonSelvagem.def, pokemonSelvagem.golpes, Image.FromFile($"Images/{pokemonSelvagem.nome}.png"));
                         pokesJogador.Add(poke);
-                        MessageBox.Show("Parabens!!! Voce capturou um " + pokemonSelvagem.Nome);
+                        MessageBox.Show("Parabens!!! Voce capturou um " + pokemonSelvagem.nome);
                         LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                         AreaDeTrab.SoundMenu.Play();
                 }
@@ -94,7 +94,7 @@ using System.Threading.Tasks;
                     {
                         sound = new SoundPlayer("Sounds/PokeBallNaoCapturou.wav");
                         sound.Play();
-                        MessageBox.Show($"Que pena, sua pokebola quebrou e o {pokemonSelvagem.Nome} fugiu");
+                        MessageBox.Show($"Que pena, sua pokebola quebrou e o {pokemonSelvagem.nome} fugiu");
                         LutaPokemonGUI.Combate.SelecionarPokemon.combate.Close();
                         Combate.SoundBattle.Play();
                     }

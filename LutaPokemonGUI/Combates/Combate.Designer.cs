@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Combate));
             btAttack1 = new Button();
             btAttack2 = new Button();
@@ -158,7 +159,6 @@
             lbDanoJogador.Size = new Size(521, 46);
             lbDanoJogador.TabIndex = 8;
             lbDanoJogador.Text = "label5";
-            lbDanoJogador.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblDanoSelvagem
             // 
@@ -170,7 +170,6 @@
             lblDanoSelvagem.Size = new Size(521, 46);
             lblDanoSelvagem.TabIndex = 9;
             lblDanoSelvagem.Text = "label5";
-            lblDanoSelvagem.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnCapturar
             // 
